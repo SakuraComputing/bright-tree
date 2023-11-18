@@ -12,5 +12,5 @@ describe('./components/directory', () => {
           const fileElement = screen.getByText(fileName as string);
           expect(fileElement).toBeInTheDocument();
         });    
-    })
+    });
 });
