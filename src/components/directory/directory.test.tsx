@@ -13,4 +13,9 @@ describe('./components/directory', () => {
           expect(fileElement).toBeInTheDocument();
         });    
     });
+
+    it('should display a filter', () => {
+      render(<Directory root={root} />);
+      expect(screen.getByPlaceholderText('Filter directory...')).toBeInTheDocument();
+    })
 });
