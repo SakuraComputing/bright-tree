@@ -1,4 +1,9 @@
 .App {
-  text-align: center;
+  margin: 30px;
+}
+
+.element {
+  margin-left: 20px ;
+  margin-bottom: 5px;
 }
 
