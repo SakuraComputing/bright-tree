@@ -92,7 +92,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
               {isNodeExpanded ? "-" : "+"}
             </button>
           )}
-          {isFolder ? <strong className="directory">{node.name}</strong> : <span>{`--${node.name} - Date: ${node.added} Type: ${node.type}`}</span>}
+          {isFolder ? <strong className="directory">{node.name}</strong> : <span>--<strong>{node.name}</strong>{` - Date: ${node.added} Type: ${node.type}`}</span>}
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
       </div>
