@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Directory from './directory'; 
 import { root } from '../../data/files';
 
@@ -17,5 +17,15 @@ describe('./components/directory', () => {
     it('should display a filter', () => {
       render(<Directory root={root} />);
       expect(screen.getByPlaceholderText('Filter directory...')).toBeInTheDocument();
+    });
+
+    it('should filter the directories', () => {
+      render(<Directory root={root} />);
+
+      const filterInput = screen.getByTestId('filterInput');
+      fireEvent.change(filterInput, { target: { value: 'Cost centres'}});
+
+      expect(screen.queryByText('Employee Handbook')).not.toBeInTheDocument();
+      expect(screen.getByText('Cost centres')).toBeInTheDocument();
     })
 });
