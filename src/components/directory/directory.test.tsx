@@ -29,6 +29,15 @@ describe('./components/directory', () => {
       expect(screen.getByText('Cost centres')).toBeInTheDocument();
     });
 
+    it('should return nothing if unable to find any files', () => {
+      render(<Directory root={root} />);
+
+      const filterInput = screen.getByTestId('filterInput');
+      fireEvent.change(filterInput, { target: { value: 'zzzzz'}});
+      
+      expect(screen.getByText('Unable to find any files')).toBeInTheDocument();
+    });
+
     it('should display a sort radio group', () => {
       render(<Directory root={root} />);
 

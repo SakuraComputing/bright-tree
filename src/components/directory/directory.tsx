@@ -11,9 +11,10 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   const [sortOption, setSortOption] = useState<SortOption>(SortOption.Name);
 
   const filterTree = (node: IFiles ): IFiles | null => {
+
     const filteredNode: IFiles = {
       ...node,
-      // @ts-ignore
+      // @ts-ignore÷
       files: node.files ? node.files.map(filterTree).filter((n) => n !== null) : null
     };
 
@@ -30,6 +31,8 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   };
 
   const sortTree = (node: IFiles): IFiles => {
+    if(node === null) return node;
+
     const sortedNode: IFiles = {
       ...node,
       files: node.files ? node.files.map(sortTree) : undefined,
@@ -104,7 +107,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
             
           </div>
         </label>
-        {filteredAndSortedRoot.files && filteredAndSortedRoot.files?.map(renderNode)}
+        {filteredAndSortedRoot ? filteredAndSortedRoot.files && filteredAndSortedRoot.files?.map(renderNode) : <div>Unable to find any files</div>}
       </div>
   )
 };
