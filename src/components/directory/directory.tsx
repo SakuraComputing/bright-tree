@@ -86,13 +86,13 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
 
     return (
       <div key={index} className="element">
-        <div>
+        <div className="folder">
           {isFolder && (
-            <button data-testid={'directoryButton'} onClick={() => handleNodeToggle(node)}>
-              {isNodeExpanded ? "Collapse" : "Expand"}
+            <button className="button" data-testid={'directoryButton'} onClick={() => handleNodeToggle(node)}>
+              {isNodeExpanded ? "-" : "+"}
             </button>
           )}
-          {isFolder ? <strong>{node.name}</strong> : <span>{node.name}</span>}
+          {isFolder ? <strong className="directory">{node.name}</strong> : <span>{`${node.name} - Date: ${node.added} Type: ${node.type}`}</span>}
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
       </div>
@@ -101,34 +101,38 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   
   return (
       <div>
-        <div>
+        <div className="filter-container">
           <input
             type="text"
             placeholder="Filter directory..."
             value={filter}
             onChange={handleFilterChange}
             data-testid={'filterInput'}
+            className="filter"
           />
         </div>
-        <label>
+        <section className="radio-button-container">
           Sort by:
           <div>
-            <label>
+            <label className="button-container">
               Name
               <input type="radio" value="name" checked={sortOption === SortOption.Name} onChange={() => handleSortChange(SortOption.Name)} />
             </label>
-            <label>
+            <label className="button-container">
               Added
               <input type="radio" value="added" checked={sortOption === SortOption.Added} onChange={() => handleSortChange(SortOption.Added)} />
             </label>            
-            <label>
+            <label className="button-container">
               Type
               <input type="radio" value="type" checked={sortOption === SortOption.Type} onChange={() => handleSortChange(SortOption.Type)} />
             </label>
             
           </div>
-        </label>
-        {filteredAndSortedRoot ? filteredAndSortedRoot.files && filteredAndSortedRoot.files?.map(renderNode) : <div>Unable to find any files</div>}
+        </section >
+        <div className="tree-container">
+          <h2>Files and Folders</h2>
+          {filteredAndSortedRoot ? filteredAndSortedRoot.files && filteredAndSortedRoot.files?.map(renderNode) : <div className="error-message">Unable to find any files</div>}
+        </div>
       </div>
   )
 };

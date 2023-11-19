@@ -2,8 +2,62 @@
   margin: 30px;
 }
 
-.element {
-  margin-left: 20px ;
-  margin-bottom: 5px;
+.App-header {
+  color: var(--blue);
 }
 
+.element {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.filter-container {
+  margin: 20px 0;
+}
+
+.filter {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  padding: 10px;
+  border-radius: 10px;
+  width: 250px;
+  font-size: medium;
+  font-style: italic;
+}
+
+.filter::placeholder  {
+  color: var(--blue);
+}
+
+.radio-button-container {
+  width: 500px; 
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--blue);
+}
+
+.button-container {
+  margin-left: 20px;
+}
+
+.tree-container {
+  margin: 20px 0;
+}
+
+.button {
+  padding: 5px;
+  width: 45px;
+  background-color: var(--purple);
+  color: var(--white);
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.directory {
+  margin-left: 20px;
+}
+
+.folder {
+  margin: 10px 0;
+}
