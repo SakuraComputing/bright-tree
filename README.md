@@ -17,6 +17,6 @@ Runs React Testing Library Tests
 
 ### `Improvements`
 
-Split out Button, Radio Buttons, Filter into separate components with their functionality and CSS for potential re-use and readabilty/maintainabilty of this component.
+Split out Button, Radio Buttons, Filter into separate components for reusability readabilty/maintainabilty of this component.
 
 Apply Better Styling. Use icons for the folders and files for a better UX.
