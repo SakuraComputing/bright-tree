@@ -1,16 +1,22 @@
-## Bright Tree Project Scripts
+## Bright HR Tree Challenge
 
-In the project directory, you can run:
+Built with React 18\
+Typescript 4
+
+### `npm install`
+
+Initialise
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Starts the app on [http://localhost:3000](http://localhost:3000)
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs React Testing Library Tests
+
+### `Improvements`
+
+Split out Button, Radio Buttons, Filter into separate components with their functionality and CSS for potential re-use and readabilty/maintainabilty of this component.
+
+Apply Better Styling. Use icons for the folders and files for a better UX.

@@ -92,7 +92,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
               {isNodeExpanded ? "-" : "+"}
             </button>
           )}
-          {isFolder ? <strong className="directory">{node.name}</strong> : <span>{`${node.name} - Date: ${node.added} Type: ${node.type}`}</span>}
+          {isFolder ? <strong className="directory">{node.name}</strong> : <span>{`--${node.name} - Date: ${node.added} Type: ${node.type}`}</span>}
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
       </div>
@@ -112,8 +112,8 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
           />
         </div>
         <section className="radio-button-container">
-          Sort by:
           <div>
+            Sort by:
             <label className="button-container">
               Name
               <input type="radio" value="name" checked={sortOption === SortOption.Name} onChange={() => handleSortChange(SortOption.Name)} />
