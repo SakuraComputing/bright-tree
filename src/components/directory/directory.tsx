@@ -9,6 +9,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
 
   const [filter, setFilter] = useState('');
   const [sortOption, setSortOption] = useState<SortOption>(SortOption.Name);
+  const [expandedNodes, setExpandedNodes] = useState<Record<string, boolean>>({});
 
   const filterTree = (node: IFiles ): IFiles | null => {
 
@@ -65,19 +66,39 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
     setSortOption(sortBy as SortOption);
   };
 
+  const handleNodeToggle = (node: IFiles) => {
+    setExpandedNodes((prevExpanded) => ({
+      ...prevExpanded,
+      [getNodeKey(node)]: !prevExpanded[getNodeKey(node)],
+    }));
+  };
+
+  const getNodeKey = (node: IFiles) => {
+    // Generate a unique key for each node based on its properties
+    return `${node.type}_${node.name}_${node.added}`;
+  };
+
   const filteredAndSortedRoot = sortTree(filterTree(root) as IFiles);
 
-  const renderNode = (node: IFiles, index: number) => (
+  const renderNode = (node: IFiles, index: number) => {
+    const isFolder = node.type === "folder";
+    const isNodeExpanded = expandedNodes[getNodeKey(node)];
+
+    return (
       <div key={index} className="element">
-        {node.type === 'folder' ? (
-          <strong>{node.name}</strong>
-        ) : (
-          <span>{node.name}</span>
-        )}
-        {node.files && node.files.map(renderNode)}
+        <div>
+          {isFolder && (
+            <button data-testid={'directoryButton'} onClick={() => handleNodeToggle(node)}>
+              {isNodeExpanded ? "Collapse" : "Expand"}
+            </button>
+          )}
+          {isFolder ? <strong>{node.name}</strong> : <span>{node.name}</span>}
+        </div>
+        {isNodeExpanded && node.files && node.files.map(renderNode)}
       </div>
     );
-
+  };
+  
   return (
       <div>
         <div>

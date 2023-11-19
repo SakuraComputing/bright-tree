@@ -55,4 +55,15 @@ describe('./components/directory', () => {
 
       expect(firstElement.compareDocumentPosition(secondElement)).toBe(4); 
     })
+
+    it('should expand the file structure when the expand button is clicked', () => {
+      render(<Directory root={root} />);
+
+      const firstExpandableDir = screen.getAllByTestId('directoryButton')[0];
+
+      fireEvent.click(firstExpandableDir);      
+
+      expect(screen.getByText('Expenses claim form')).toBeInTheDocument();
+    })
+
 });
