@@ -5,7 +5,11 @@ export type IFiles = {
     added?: string;
   }
 
-export type SortOption = 'name' | 'added' | 'type'; 
+export enum SortOption {
+    Name = 'name',
+    Added = 'added',
+    Type = 'type'
+}
 
 export const root: IFiles = {
     type: "folder",

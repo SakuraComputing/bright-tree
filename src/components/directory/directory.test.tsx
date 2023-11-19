@@ -27,5 +27,23 @@ describe('./components/directory', () => {
 
       expect(screen.queryByText('Employee Handbook')).not.toBeInTheDocument();
       expect(screen.getByText('Cost centres')).toBeInTheDocument();
+    });
+
+    it('should display a sort radio group', () => {
+      render(<Directory root={root} />);
+
+      expect(screen.getByText('Sort by:')).toBeInTheDocument();
+      expect(screen.getByText('Name')).toBeInTheDocument();
+      expect(screen.getByText('Added')).toBeInTheDocument();
+      expect(screen.getByText('Type')).toBeInTheDocument();
+    });
+
+    it('should sort the by name', () => {
+      render(<Directory root={root} />);
+
+      const firstElement = screen.getByText('Employee Handbook');
+      const secondElement = screen.getByText('Public Holiday policy');
+
+      expect(firstElement.compareDocumentPosition(secondElement)).toBe(4); 
     })
 });
