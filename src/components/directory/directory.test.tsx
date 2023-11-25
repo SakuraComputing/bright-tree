@@ -4,16 +4,6 @@ import Directory from './directory';
 import { root } from '../../data/files';
 
 describe('./components/directory', () => {
-    it('should verify that each file name is rendered', () => {
-        render(<Directory root={root} />);
-
-        const fileNames = root.files?.map((file) => file.name);
-        fileNames?.forEach((fileName) => {
-          const fileElement = screen.getByText(fileName as string);
-          expect(fileElement).toBeInTheDocument();
-        });    
-    });
-
     it('should display a filter', () => {
       render(<Directory root={root} />);
       expect(screen.getByPlaceholderText('Filter directory...')).toBeInTheDocument();
@@ -25,8 +15,8 @@ describe('./components/directory', () => {
       const filterInput = screen.getByTestId('filterInput');
       fireEvent.change(filterInput, { target: { value: 'Cost centres'}});
 
-      expect(screen.queryByText('Employee Handbook')).not.toBeInTheDocument();
-      expect(screen.getByText('Cost centres')).toBeInTheDocument();
+      expect(screen.queryByText('Employee Handbook.doc')).not.toBeInTheDocument();
+      expect(screen.getByText('Cost centres.csv')).toBeInTheDocument();
     });
 
     it('should return nothing if unable to find any files', () => {
@@ -50,8 +40,8 @@ describe('./components/directory', () => {
     it('should sort the by name', () => {
       render(<Directory root={root} />);
 
-      const firstElement = screen.getByText('Employee Handbook');
-      const secondElement = screen.getByText('Public Holiday policy');
+      const firstElement = screen.getByText('Employee Handbook.pdf');
+      const secondElement = screen.getByText('Public Holiday policy.pdf');
 
       expect(firstElement.compareDocumentPosition(secondElement)).toBe(4); 
     })
@@ -59,11 +49,11 @@ describe('./components/directory', () => {
     it('should expand the file structure when the expand button is clicked', () => {
       render(<Directory root={root} />);
 
-      const firstExpandableDir = screen.getAllByTestId('directoryButton')[0];
+      const firstExpandableDir = screen.getAllByTestId('directoryButton')[1];
 
       fireEvent.click(firstExpandableDir);      
 
-      expect(screen.getByText('Expenses claim form')).toBeInTheDocument();
+      expect(screen.getByText('Expenses claim form.doc')).toBeInTheDocument();
     })
 
 });

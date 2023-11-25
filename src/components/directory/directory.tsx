@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IFiles, SortOption } from "../../data/files";
-import { TiFolderOpen, TiFolder, TiDocument } from "react-icons/ti";
+import { TiDocument } from "react-icons/ti";
+import ToggleNodeButton from "../togglenodebutton/ToggleNodeButton";
 
   type IDirectoryProps = {
   root: IFiles;
@@ -68,6 +69,8 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   };
 
   const handleNodeToggle = (node: IFiles) => {
+
+    console.log('Is this getting called');
     setExpandedNodes((prevExpanded) => ({
       ...prevExpanded,
       [getNodeKey(node)]: !prevExpanded[getNodeKey(node)],
@@ -88,11 +91,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
     return (
       <div key={index} className="element">
         <div className="folder">
-          {isFolder && (
-            <button className="folder-button" data-testid={'directoryButton'} onClick={() => handleNodeToggle(node)}>
-              {isNodeExpanded ? <TiFolderOpen /> : <TiFolder />}
-            </button>
-          )}
+          {isFolder && <ToggleNodeButton isNodeExpanded={isNodeExpanded} onClick={() => handleNodeToggle(node)}/>}
           {isFolder ? <strong className="directory">{node.name}</strong> : <div className="document-container"><TiDocument className="document"/><div>{node.name}.{node.type}</div>{` - added: ${node.added}`}</div>}
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
@@ -132,6 +131,10 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
         </section >
         <div className="tree-container">
           <h2>Files and Folders</h2>
+          <div className="folder">
+            <ToggleNodeButton isNodeExpanded onClick={() => {}} />
+            <strong className="directory">Root</strong>
+          </div>
           {filteredAndSortedRoot ? filteredAndSortedRoot.files && filteredAndSortedRoot.files?.map(renderNode) : <div className="error-message">Unable to find any files</div>}
         </div>
       </div>
