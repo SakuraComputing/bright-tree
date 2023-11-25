@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IFiles, SortOption } from "../../data/files";
+import { TiFolderOpen, TiFolder, TiDocument } from "react-icons/ti";
 
   type IDirectoryProps = {
   root: IFiles;
@@ -88,11 +89,11 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
       <div key={index} className="element">
         <div className="folder">
           {isFolder && (
-            <button className="button" data-testid={'directoryButton'} onClick={() => handleNodeToggle(node)}>
-              {isNodeExpanded ? "-" : "+"}
+            <button className="folder-button" data-testid={'directoryButton'} onClick={() => handleNodeToggle(node)}>
+              {isNodeExpanded ? <TiFolderOpen /> : <TiFolder />}
             </button>
           )}
-          {isFolder ? <strong className="directory">{node.name}</strong> : <span>--<strong>{node.name}</strong>{` - Date: ${node.added} Type: ${node.type}`}</span>}
+          {isFolder ? <strong className="directory">{node.name}</strong> : <div className="document-container"><TiDocument className="document"/><div>{node.name}.{node.type}</div>{` - added: ${node.added}`}</div>}
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
       </div>

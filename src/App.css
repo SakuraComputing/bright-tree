@@ -44,14 +44,15 @@
   margin: 20px 0;
 }
 
-.button {
-  padding: 5px;
-  width: 45px;
+.folder-button {
+  padding: 4px;
+  width: 40px;
   background-color: var(--purple);
   color: var(--white);
   border: none;
   border-radius: 10px;
   font-weight: bold;
+  font-size: large;
 }
 
 .directory {
@@ -60,4 +61,16 @@
 
 .folder {
   margin: 10px 0;
+}
+
+.document-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.document {
+  font-size: x-large;
+  margin-right: 10px;
+
 }
