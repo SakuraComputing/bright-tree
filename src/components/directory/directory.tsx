@@ -3,6 +3,7 @@ import { IFiles, SortOption } from "../../data/files";
 import { TiDocument } from "react-icons/ti";
 import ToggleNodeButton from "../ToggleNodeButton/ToggleNodeButton";
 import SortOptions from "../SortOptions/SortOptions";
+import Filter from "../Filter/Filter";
 
 type IDirectoryProps = {
   root: IFiles;
@@ -70,8 +71,6 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   };
 
   const handleNodeToggle = (node: IFiles) => {
-
-    console.log('Is this getting called');
     setExpandedNodes((prevExpanded) => ({
       ...prevExpanded,
       [getNodeKey(node)]: !prevExpanded[getNodeKey(node)],
@@ -102,16 +101,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   
   return (
       <div>
-        <div className="filter-container">
-          <input
-            type="text"
-            placeholder="Filter directory..."
-            value={filter}
-            onChange={handleFilterChange}
-            data-testid={'filterInput'}
-            className="filter"
-          />
-        </div>
+        <Filter filter={filter} handleFilterChange={handleFilterChange} />
         <section className="radio-button-container">
           <SortOptions sortOption={sortOption} onSortChange={handleSortChange} />
         </section >
