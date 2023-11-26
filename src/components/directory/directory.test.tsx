@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Directory from './directory'; 
+import Directory from './Directory'; 
 import { root } from '../../data/files';
 
 describe('./components/directory', () => {
