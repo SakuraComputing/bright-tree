@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import SortOptions from "./SortOptions";
-import { SortOption } from "../../data/files";
+import { SortOption } from "../../types/tree";
 
 describe("SortOptions", () => {
   it("renders SortOptions component correctly", () => {

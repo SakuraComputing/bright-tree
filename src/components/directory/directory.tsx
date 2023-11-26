@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { IFiles, SortOption } from "../../data/files";
 import { TiDocument } from "react-icons/ti";
 import ToggleNodeButton from "../ToggleNodeButton/ToggleNodeButton";
 import SortOptions from "../SortOptions/SortOptions";
 import Filter from "../Filter/Filter";
+import { IFiles, SortOption } from "../../types/tree";
 
 type IDirectoryProps = {
   root: IFiles;

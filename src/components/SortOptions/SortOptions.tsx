@@ -1,5 +1,5 @@
 import React from "react";
-import { SortOption } from "../../data/files";
+import { SortOption } from "../../types/tree";
 
 type ISortOptionsProps = {
   sortOption: SortOption;
