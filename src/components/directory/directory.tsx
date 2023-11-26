@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IFiles, SortOption } from "../../data/files";
 import { TiDocument } from "react-icons/ti";
 import ToggleNodeButton from "../ToggleNodeButton/ToggleNodeButton";
+import SortOptions from "../SortOptions/SortOptions";
 
 type IDirectoryProps = {
   root: IFiles;
@@ -112,22 +113,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
           />
         </div>
         <section className="radio-button-container">
-          <div>
-            Sort by:
-            <label className="button-container">
-              Name
-              <input type="radio" value="name" checked={sortOption === SortOption.Name} onChange={() => handleSortChange(SortOption.Name)} />
-            </label>
-            <label className="button-container">
-              Added
-              <input type="radio" value="added" checked={sortOption === SortOption.Added} onChange={() => handleSortChange(SortOption.Added)} />
-            </label>            
-            <label className="button-container">
-              Type
-              <input type="radio" value="type" checked={sortOption === SortOption.Type} onChange={() => handleSortChange(SortOption.Type)} />
-            </label>
-            
-          </div>
+          <SortOptions sortOption={sortOption} onSortChange={handleSortChange} />
         </section >
         <div className="tree-container">
           <h2>Files and Folders</h2>
