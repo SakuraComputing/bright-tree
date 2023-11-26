@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { TiDocument } from "react-icons/ti";
-import ToggleNodeButton from "../ToggleNodeButton/ToggleNodeButton";
 import SortOptions from "../SortOptions/SortOptions";
 import Filter from "../Filter/Filter";
 import { IFiles, SortOption } from "../../types/tree";
 import { sortTree } from "../Helpers/TreeHelper";
+import Folder from "../Folder/Folder";
 
 type IDirectoryProps = {
   root: IFiles;
@@ -59,14 +59,19 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   const filteredAndSortedRoot = sortTree(filterTree(root) as IFiles, sortOption);
 
   const renderNode = (node: IFiles, index: number) => {
-    const isFolder = node.type === "folder";
+
+    const { name, type, added } = node;
+
+    const isFolder = type === "folder";
     const isNodeExpanded = expandedNodes[getNodeKey(node)];
 
     return (
       <div key={index} className="element">
         <div className="folder">
-          {isFolder && <ToggleNodeButton isNodeExpanded={isNodeExpanded} onClick={() => handleNodeToggle(node)}/>}
-          {isFolder ? <strong className="directory">{node.name}</strong> : <div className="document-container"><TiDocument className="document"/><div>{node.name}.{node.type}</div>{` - added: ${node.added}`}</div>}
+          {isFolder ? 
+            <Folder fileName={name} isNodeExpanded={isNodeExpanded} onClick={() => handleNodeToggle(node)} /> 
+            : <div className="document-container"><TiDocument className="document"/><div>{name}.{type}</div>{` - added: ${added}`}</div>
+          }
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
       </div>
@@ -82,8 +87,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
         <div className="tree-container">
           <h2>Files and Folders</h2>
           <div className="folder">
-            <ToggleNodeButton isNodeExpanded onClick={() => {}} />
-            <strong className="directory">Root</strong>
+            <Folder fileName="root" isNodeExpanded={false} onClick={() => {}} />
           </div>
           {filteredAndSortedRoot ? filteredAndSortedRoot.files && filteredAndSortedRoot.files?.map(renderNode) : <div className="error-message">Unable to find any files</div>}
         </div>
