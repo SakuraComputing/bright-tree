@@ -10,7 +10,7 @@ const Filter: React.FC<IFilterProps> = ({ filter, handleFilterChange }) => {
         <div className="filter-container">
         <input
           type="text"
-          placeholder="Filter directory..."
+          placeholder="Filter files..."
           value={filter}
           onChange={handleFilterChange}
           data-testid={'filterInput'}

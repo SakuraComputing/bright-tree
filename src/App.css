@@ -1,18 +1,27 @@
 .App {
-  margin: 30px;
+  height: 100vh;
+  padding: 40px;
+  background-image: linear-gradient(to right, #b6fbff, #83a4d4);
 }
 
 .App-header {
   color: var(--blue);
 }
 
+.app-title {
+  font-size: xx-large;
+  align-items: center;
+  text-align: center;
+  font-weight: bolder;
+}
+
 .element {
-  margin-left: 20px;
+  margin-left: 23px;
   margin-bottom: 15px;
 }
 
 .filter-container {
-  margin: 20px 0;
+  margin-right: 30px;
 }
 
 .filter {
@@ -45,7 +54,7 @@
 }
 
 .folder-button {
-  padding: 4px;
+  padding-top: 5px;
   width: 40px;
   background-color: var(--purple);
   color: var(--white);
@@ -72,5 +81,10 @@
 .document {
   font-size: x-large;
   margin-right: 10px;
+}
 
+.modify-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
 }

@@ -11,7 +11,7 @@ describe("Filter", () => {
       <Filter filter={filter} handleFilterChange={handleFilterChangeMock} />
     );
 
-    expect(screen.getByPlaceholderText("Filter directory...")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Filter files...")).toBeInTheDocument();
     expect(screen.getByTestId("filterInput")).toHaveValue(filter);
   });
 

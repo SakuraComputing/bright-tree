@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Bright<sup>HR</sup> Tree</h1>
+        <div className='app-title'>Bright<sup>HR</sup> Tree</div>
         <Directory root={root}/>
       </header>
     </div>

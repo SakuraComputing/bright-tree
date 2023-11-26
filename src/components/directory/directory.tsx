@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TiDocument } from "react-icons/ti";
+import { IoReturnDownForwardSharp } from "react-icons/io5";
 import SortOptions from "../SortOptions/SortOptions";
 import Filter from "../Filter/Filter";
 import { IFiles, SortOption } from "../../types/tree";
@@ -70,7 +71,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
         <div className="folder">
           {isFolder ? 
             <Folder fileName={name} isNodeExpanded={isNodeExpanded} onClick={() => handleNodeToggle(node)} /> 
-            : <div className="document-container"><TiDocument className="document"/><div>{name}.{type}</div>{` - added: ${added}`}</div>
+            : <div className="document-container"><IoReturnDownForwardSharp /><TiDocument className="document"/><div>{name}.{type}</div>{added}</div>
           }
         </div>
         {isNodeExpanded && node.files && node.files.map(renderNode)}
@@ -80,12 +81,14 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
   
   return (
       <div>
-        <Filter filter={filter} handleFilterChange={handleFilterChange} />
-        <section className="radio-button-container">
-          <SortOptions sortOption={sortOption} onSortChange={handleSortChange} />
-        </section >
         <div className="tree-container">
           <h2>Files and Folders</h2>
+          <div className="modify-container">
+            <Filter filter={filter} handleFilterChange={handleFilterChange} />
+            <section className="radio-button-container">
+              <SortOptions sortOption={sortOption} onSortChange={handleSortChange} />
+            </section >
+          </div>
           <div className="folder">
             <Folder fileName="root" isNodeExpanded={false} onClick={() => {}} />
           </div>
