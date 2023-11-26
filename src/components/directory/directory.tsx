@@ -4,6 +4,7 @@ import ToggleNodeButton from "../ToggleNodeButton/ToggleNodeButton";
 import SortOptions from "../SortOptions/SortOptions";
 import Filter from "../Filter/Filter";
 import { IFiles, SortOption } from "../../types/tree";
+import { sortTree } from "../Helpers/TreeHelper";
 
 type IDirectoryProps = {
   root: IFiles;
@@ -35,33 +36,6 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
     return null;
   };
 
-  const sortTree = (node: IFiles): IFiles => {
-    if(node === null) return node;
-
-    const sortedNode: IFiles = {
-      ...node,
-      files: node.files ? node.files.map(sortTree) : undefined,
-    };
-
-    // Sort the node's children based on the selected sort option
-    if (sortedNode.files) {
-      sortedNode.files.sort((a, b) => {
-        switch (sortOption) {
-          case SortOption.Name:
-            return a.name.localeCompare(b.name);
-          case SortOption.Added:
-            return (a.added || '').localeCompare(b.added || '');
-          case SortOption.Type:
-            return a.type.localeCompare(b.type);
-          default:
-            return 0;
-        }
-      });
-    }
-
-    return sortedNode;
-  };
-
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(e.target.value);
   };
@@ -82,7 +56,7 @@ const Directory: React.FC<IDirectoryProps> = ({ root }) => {
     return `${node.type}_${node.name}_${node.added}`;
   };
 
-  const filteredAndSortedRoot = sortTree(filterTree(root) as IFiles);
+  const filteredAndSortedRoot = sortTree(filterTree(root) as IFiles, sortOption);
 
   const renderNode = (node: IFiles, index: number) => {
     const isFolder = node.type === "folder";
